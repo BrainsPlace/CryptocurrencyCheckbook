@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,13 +19,19 @@ namespace Cryptocurrency_Checkbook
         public CryptoCheckbook()
         {
             InitializeComponent();
+            try
+            {
+                LoadEntries();
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
         private void dataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            UpdateMarketValues();
-            UpdatePerCoinPaid();
-            UpdateNetGain();
+            UpdateAllData();
         }            
 
         private void UpdateMarketValues()
@@ -38,6 +45,7 @@ namespace Cryptocurrency_Checkbook
                     var obj = JsonConvert.DeserializeObject<Currency>(json);
                     r.Cells["NowPerCoin"].Value = obj.price_usd;
 
+                    labelLastLoad.Text = "Last market value load: " + DateTime.Now.ToString();
                 }
             }
         }
@@ -55,7 +63,6 @@ namespace Cryptocurrency_Checkbook
                         decimal paidValue = Convert.ToDecimal(r.Cells["PaidPerCoin"].Value);
                         decimal quantity = Convert.ToDecimal(r.Cells["Quantity"].Value);
                         decimal marketValue = Convert.ToDecimal(r.Cells["NowPerCoin"].Value);
-
 
                         r.Cells["Net"].Value = Convert.ToString((marketValue - paidValue) * quantity);
                         if (Convert.ToDecimal(r.Cells["Net"].Value) < 0)
@@ -119,21 +126,6 @@ namespace Cryptocurrency_Checkbook
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SaveEntries();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            dataGridView.Rows.Clear();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            LoadEntries();
-        }
-
         private void SaveEntries()
         {
             System.IO.StreamWriter file = new System.IO.StreamWriter(@"UserEntries.txt");
@@ -171,10 +163,67 @@ namespace Cryptocurrency_Checkbook
 
                 dataGridView.Rows.Add(row);
             }
+            UpdateAllData();
+            file.Close();
+        }
+
+        private void UpdateAllData()
+        {
             UpdateMarketValues();
             UpdatePerCoinPaid();
             UpdateNetGain();
+            UpdateLink();
         }
-        
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveEntries();
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadEntries();
+        }
+
+        private void clearGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView.Rows.Clear();
+        }
+
+        private void refreshDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateAllData();
+        }
+
+        private void UpdateLink()
+        {
+            foreach (DataGridViewRow r in dataGridView.Rows)
+            {
+                if (r.Cells["Currency"].Value != null && r.Cells["Currency"].Value.ToString() != "")
+                {
+                    r.Cells["Link"].Value = string.Format(@"https://coinmarketcap.com/currencies/{0}/", r.Cells["Currency"].Value.ToString());
+                }
+            }
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 6)
+            {
+                var url = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                Process.Start(url);
+            }
+        }
+
+        private void CryptoCheckbook_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                SaveEntries();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

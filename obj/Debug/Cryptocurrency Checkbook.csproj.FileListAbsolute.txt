@@ -9,3 +9,13 @@ c:\users\brian\documents\visual studio 2017\Projects\Cryptocurrency Checkbook\Cr
 c:\users\brian\documents\visual studio 2017\Projects\Cryptocurrency Checkbook\Cryptocurrency Checkbook\obj\Debug\Cryptocurrency Checkbook.pdb
 c:\users\brian\documents\visual studio 2017\Projects\Cryptocurrency Checkbook\Cryptocurrency Checkbook\bin\Debug\Newtonsoft.Json.dll
 c:\users\brian\documents\visual studio 2017\Projects\Cryptocurrency Checkbook\Cryptocurrency Checkbook\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\bin\Debug\Cryptocurrency Checkbook.exe.config
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\bin\Debug\Cryptocurrency Checkbook.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\bin\Debug\Cryptocurrency Checkbook.pdb
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\obj\Debug\Cryptocurrency Checkbook.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\obj\Debug\Cryptocurrency_Checkbook.CryptoCheckbook.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\obj\Debug\Cryptocurrency_Checkbook.Properties.Resources.resources
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\obj\Debug\Cryptocurrency Checkbook.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\obj\Debug\Cryptocurrency Checkbook.exe
+C:\Users\Brian\Documents\Visual Studio 2017\Projects\CryptocurrencyCheckbook\obj\Debug\Cryptocurrency Checkbook.pdb
